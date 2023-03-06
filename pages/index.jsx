@@ -91,7 +91,6 @@ export default function Home() {
           trigger: secondSec.current,
           start: "top 50%",
           end: "bottom 70%",
-          markers: true,
           scrub: 1,
         },
         opacity: 1,

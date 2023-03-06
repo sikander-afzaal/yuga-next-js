@@ -84,7 +84,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: secondSec.current,
           start: "top 40%",
-          end: "bottom 10%",
+          end: "bottom top",
           toggleActions: "play reverse play reverse",
         },
         backgroundColor: "white",
@@ -112,23 +112,16 @@ export default function Home() {
       const cardTime = gsap.timeline({
         scrollTrigger: {
           trigger: secondSec.current,
-          start: "center 25%",
-          end: "+=1000",
+          start: "50% top",
+          markers: true,
           scrub: 3,
         },
       });
       if (window.innerWidth > 800) {
         cardTime
-          .to(thirdSection.current, { yPercent: -10 })
+          .to(thirdSection.current, { yPercent: -55 })
           .to(
-            [
-              card1.current,
-              card2.current,
-              card3.current,
-              card4.current,
-              card5.current,
-              card6.current,
-            ],
+            [card1.current, card2.current, card3.current],
             {
               y: 0,
               opacity: 1,
@@ -136,7 +129,11 @@ export default function Home() {
             },
             "0"
           )
-          .to(scrollText.current, { opacity: 1, delay: 0.3 }, "0");
+          .to(
+            scrollText.current,
+            { opacity: 1, delay: 0.3, color: "white" },
+            "0"
+          );
       } else {
         cardTime
           .to(
@@ -152,6 +149,7 @@ export default function Home() {
               y: 0,
               opacity: 1,
               stagger: 0.5,
+              color: "white",
             },
             "0"
           )

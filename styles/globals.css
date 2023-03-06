@@ -5,3 +5,6 @@
   box-sizing: border-box;
   font-family: "Familjen Grotesk", sans-serif;
 }
+body {
+  overflow-x: hidden;
+}

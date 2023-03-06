@@ -146,6 +146,8 @@
     padding-top: 0px;
     overflow-x: hidden;
     display: flex;
+    min-height: 100vh;
+    min-height: 100svh;
     align-items: flex-start;
   }
   .thirdSection {

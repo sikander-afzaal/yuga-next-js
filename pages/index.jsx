@@ -123,7 +123,9 @@ export default function Home() {
       </Head> */}
       <div>
         <div ref={mainContainer} className={styles.main}>
-          <div ref={firstSection} className={styles.hero}></div>
+          <div ref={firstSection} className={styles.hero}>
+            <h2>Scroll Down</h2>
+          </div>
           <div ref={textSec} className={styles.textSec}>
             <h1 ref={line1}>SHAPING WEB3</h1>
             <h1 ref={line2}>THROUGH</h1>

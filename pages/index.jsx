@@ -17,14 +17,15 @@ export default function Home() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.config({
-      limitCallbacks: true,
-      ignoreMobileResize: true,
-    });
-    if (window.innerWidth <= 800) {
-      ScrollTrigger.normalizeScroll(true);
-    }
+
     const context = gsap.context(() => {
+      ScrollTrigger.config({
+        limitCallbacks: true,
+        ignoreMobileResize: true,
+      });
+      if (window.innerWidth <= 800) {
+        ScrollTrigger.normalizeScroll(true);
+      }
       gsap.to(mainContainer.current, {
         scrollTrigger: {
           trigger: firstSection.current,
@@ -88,19 +89,31 @@ export default function Home() {
       gsap.to(shuffledWords, {
         scrollTrigger: {
           trigger: secondSec.current,
-          start: "top 40%",
-          end: "bottom top",
-          scrub: 2,
+          start: "top 50%",
+          end: "bottom 70%",
+          markers: true,
+          scrub: 1,
         },
         opacity: 1,
-        stagger: 0.1,
+        duration: 0.01,
+        stagger: 0.01,
       });
-    }, []);
+    }, [
+      line1.current,
+      line2.current,
+      line3.current,
+      line4.current,
+      line5.current,
+      mainContainer.current,
+      firstSection.current,
+      textSec.current,
+      secondSec.current,
+    ]);
 
     return () => {
       context.revert();
     };
-  }, [secondSecPara.current?.innerHtml]);
+  }, []);
   return (
     <>
       {/* <Head>
@@ -178,6 +191,7 @@ export default function Home() {
               <span>Lorem </span>
             </p>
           </div>
+          <div className={styles.hero}></div>
         </div>
       </div>
     </>

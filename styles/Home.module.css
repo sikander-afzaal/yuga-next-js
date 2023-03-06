@@ -25,7 +25,7 @@
 }
 .secondSec {
   max-width: 1400px;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;

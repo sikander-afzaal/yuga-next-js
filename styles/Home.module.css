@@ -148,6 +148,7 @@
     display: flex;
     min-height: 100vh;
     min-height: 100svh;
+    padding-top: 20px;
     align-items: flex-start;
   }
   .thirdSection {

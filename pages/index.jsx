@@ -229,24 +229,7 @@ export default function Home() {
           });
         });
       });
-    }, [
-      line1.current,
-      line2.current,
-      line3.current,
-      line4.current,
-      line5.current,
-      mainContainer.current,
-      firstSection.current,
-      textSec.current,
-      secondSec.current,
-      parallexCont.current,
-      card1.current,
-      card2.current,
-      card3.current,
-      card4.current,
-      card5.current,
-      card6.current,
-    ]);
+    }, [mainContainer.current]);
 
     return () => {
       context.revert();

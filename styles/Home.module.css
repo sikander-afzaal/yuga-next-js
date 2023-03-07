@@ -9,7 +9,6 @@
   overflow-x: hidden;
 }
 .hero {
-  background-color: black;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -24,7 +23,6 @@
 .textSec h1 {
   line-height: 0.85;
   font-size: 6.375rem;
-
   color: white;
   text-transform: uppercase;
 }

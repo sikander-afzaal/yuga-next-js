@@ -1,9 +1,10 @@
 import Head from "next/head";
 import gsap, { Sine } from "gsap";
 import styles from "../styles/Home.module.css";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 export default function Home() {
+  const [TEXT_MOVE, setTEXT_MOVE] = useState(0);
   const mainContainer = useRef();
   const firstSection = useRef();
   const textSec = useRef();
@@ -30,7 +31,10 @@ export default function Home() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
+    setTimeout(() => {
+      const windowWidth = window.innerWidth - 35;
+      setTEXT_MOVE(scrollText.current.offsetWidth - windowWidth);
+    }, 300);
     const context = gsap.context(() => {
       ScrollTrigger.config({
         limitCallbacks: true,
@@ -166,8 +170,6 @@ export default function Home() {
           window.innerWidth > 800
             ? (6 - CARDS_ON_SCREEN) * 620 // amount to be moved desktop
             : (6 - CARDS_ON_SCREEN) * 400; // amount to be moved mobile
-        const windowWidth = window.innerWidth - 35;
-        const TEXT_MOVE = scrollText.current.offsetWidth - windowWidth;
 
         if (TEXT_MOVE > 0) {
           pinned
@@ -237,12 +239,19 @@ export default function Home() {
       firstSection.current,
       textSec.current,
       secondSec.current,
+      parallexCont.current,
+      card1.current,
+      card2.current,
+      card3.current,
+      card4.current,
+      card5.current,
+      card6.current,
     ]);
 
     return () => {
       context.revert();
     };
-  }, []);
+  }, [TEXT_MOVE]);
   return (
     <>
       {/* <Head>

@@ -25,6 +25,7 @@ export default function Home() {
   const cardWrapper = useRef(null);
   const cardSection = useRef(null);
   const scrollText = useRef(null);
+  const parallexCont = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -46,6 +47,17 @@ export default function Home() {
         },
         backgroundColor: "black",
         opacity: 1,
+      });
+      gsap.to(firstSection.current, {
+        scrollTrigger: {
+          trigger: firstSection.current,
+          start: "top top",
+          end: "+=3500",
+          pin: true,
+          // pinReparent: true,
+          pinSpacing: false,
+          // toggleActions: "play reverse play reverse",
+        },
       });
       //second sectuon-----
       const textTimeline = gsap.timeline({
@@ -84,7 +96,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: secondSec.current,
           start: "top 40%",
-          end: "bottom top",
+          end: "130% top",
           toggleActions: "play reverse play reverse",
         },
         backgroundColor: "white",
@@ -113,47 +125,35 @@ export default function Home() {
         scrollTrigger: {
           trigger: secondSec.current,
           start: "50% top",
-          markers: true,
+          // markers: true,
           scrub: 3,
         },
       });
       if (window.innerWidth > 800) {
         cardTime
           .to(thirdSection.current, { yPercent: -55 })
-          .to(
-            [card1.current, card2.current, card3.current],
-            {
-              y: 0,
-              opacity: 1,
-              stagger: 0.5,
-            },
-            "0"
-          )
-          .to(
-            scrollText.current,
-            { opacity: 1, delay: 0.3, color: "white" },
-            "0"
-          );
+          .to([card1.current, card2.current, card3.current], {
+            y: 0,
+            opacity: 1,
+            stagger: 0.5,
+          });
       } else {
-        cardTime
-          .to(
-            [
-              card1.current,
-              card2.current,
-              card3.current,
-              card4.current,
-              card5.current,
-              card6.current,
-            ],
-            {
-              y: 0,
-              opacity: 1,
-              stagger: 0.5,
-              color: "white",
-            },
-            "0"
-          )
-          .to(scrollText.current, { opacity: 1, delay: 0.3 }, "0");
+        cardTime.to(
+          [
+            card1.current,
+            card2.current,
+            card3.current,
+            card4.current,
+            card5.current,
+            card6.current,
+          ],
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.5,
+          },
+          "0"
+        );
       }
       ////////////////////////////////////////////////////////
       const pinned = gsap.timeline({
@@ -179,6 +179,7 @@ export default function Home() {
 
       if (TEXT_MOVE > 0) {
         pinned
+          .to(scrollText.current, { opacity: 1, color: "white" })
           .to(
             cardSection.current,
             { x: -CARD_MOVE, duration: 4, delay: 0.1 },
@@ -190,6 +191,24 @@ export default function Home() {
             "0"
           );
       }
+      //parallex section ---------------------------------------------------
+      // gsap.to(mainContainer.current, {
+      //   scrollTrigger: {
+      //     trigger: parallexCont.current,
+      //     start: "top bottom",
+      //     toggleActions: "play reverse play reverse",
+      //   },
+      //   backgroundColor: "white",
+      // });
+      gsap.to(parallexCont.current, {
+        scrollTrigger: {
+          trigger: parallexCont.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 3,
+        },
+        marginTop: "-100vh",
+      });
     }, [
       line1.current,
       line2.current,
@@ -314,10 +333,33 @@ export default function Home() {
                 ></div>
               </div>
               <p ref={scrollText}>
-                CREATIVE, INNOVATIVE, IMAGINATIVE, POSITIVE, COLLECTIVE,
-                PASSIONATELY SEEKING MORE PASSIVE COMMUNITY INCOME BUILDING
-                OPPORTUNITIES for all
+                The Yugaverse The Yugaverse The Yugaverse The Yugaverse The
+                Yugaverse
               </p>
+            </div>
+          </div>
+          <div ref={parallexCont} className={styles.parallexCont}>
+            <div className={styles.fourthSection}>
+              <h2>
+                THE YUGAVERSE RUNS ON <br />{" "}
+                <span style={{ textDecoration: "underline" }}>APECOIN .</span>
+              </h2>
+              <div className={styles.bottomPart}>
+                <p>
+                  Owned and operated by the ApeCoin DAO, APE is a token
+                  supporting what’s next in web3. Yuga Labs is a contributor to
+                  ApeCoin, a community member of the ApeCoin DAO, and will be
+                  using ApeCoin as the primary token in Yuga Labs projects.
+                </p>
+                <button className={styles.ctaBtn}>Learn more</button>
+              </div>
+            </div>
+            <div className={styles.joinUs}>
+              <h2>Join Us</h2>
+              <div className={styles.btnDiv}>
+                <button className={styles.ctaBtn}>Work at Yuga</button>
+                <button className={styles.ctaBtn}>Partner with Yuga</button>
+              </div>
             </div>
           </div>
         </div>
